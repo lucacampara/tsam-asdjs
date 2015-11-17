@@ -1,20 +1,17 @@
-// CAMPARA LUCA
+// CAMPARA           LUCA
 
 //es 1 iterativo
 //Dato un array di interi, restituire la loro somma fino a che non viene ritrovato un valore negativo
 function ex_1_I(array){
     var somma = 0;
-	var numAttuale;
 	for (var i = 0; i < array.length; i++) {
-		numAttuale = array[i];
-		if (numAttuale >= 0) {
-			somma += numAttuale;
-			return somma;
+		if (array[i] >= 0) {
+			somma += array[i];
 		}else{
-			return 'trovato numero negativo!';
-			i = array.length;
+			return somma;
 		}
 	}
+	return somma;
 }
 
 //es 2 iterativo
@@ -79,6 +76,7 @@ function ex_5_I(a, b){
 function ex_6_I(a, b){
     var quoziente = 0;
 	var resto = 0;
+	var risultato = new Array();
 	if (a > 0 && b > 0){
 		if(a > b){
 			while (a >= b){
@@ -93,7 +91,9 @@ function ex_6_I(a, b){
 			}
 			resto = b;
 		}	
-		return quoziente + ' resto ' + resto;	
+		risultato[0] = quoziente;
+		risultato[1] = resto;
+		return risultato;	
 	}else{
 		return 'numeri negativi!';
 	}
@@ -197,38 +197,38 @@ function ex_1_R(array){
 
 //es 2 ricorsivo
 //Dato un numero n, restituire la somma dei primi n numeri interi positivi dispari
-var a = 5;
-var n = 1;
 var sum = 0;
-var i = 0;
+var i = 1;
 function ex_2_R(n){
-    if(i==a){
+    if(n <= 0){
 		return sum;
 	}else{
-		sum += n;
-		n += 2;
-		i++;
-		return ex_2_R(sum);
+		sum += i;
+		i += 2;
+		return ex_2_R(n-1);
 	}
 }
 
 //es 3 ricorsivo
 //Dato un array di 10 elementi, calcolarne la media
+var somma = 0;
 function ex_3_R(x){
     if(x.length == 0){
-       return 0;
+       return somma/10;
    }
    else{
-       return x[0] + ex_3_R(x.slice(1));
+   		somma += x[0];
+       	return ex_3_R(x.slice(1));
    }
 }
+
 
 //es 4 ricorsivo
 //Dato un intervallo [a, b] con a e b due interi positivi, restituire la somma di tutti i numeri
 //compresi all’interno dell’intervallo, estremi inclusi
 var somma=0;
 function ex_4_R(a, b){
-    if (a<b){
+    if (a < b){
 		somma = sommaNumIntervalloRic(a,b);
 	}else{
 		somma = sommaNumIntervalloRic(b,a);
@@ -237,7 +237,7 @@ function ex_4_R(a, b){
 }
 
 function sommaNumIntervalloRic(x, y){
-	if (x==y){
+	if (x > y){
 		return somma;
 	}else{
 		somma=somma+x;
@@ -265,7 +265,6 @@ function ex_5_R(a, b){
 var quoziente = 0;
 var risultato = new Array();
 function ex_6_R(a, b){
-	quoziente = 0;
     if(a > 0 && b > 0){
 		if(a >= b){
 			divisioneRic2(a, b);
@@ -285,7 +284,9 @@ function divisioneRic2(a, b){
 		return divisioneRic2((a-b), b);
 	}else{
 		resto = a;
+		console.log('quoz' + quoziente);
 		risultato[0] = quoziente;
+		console.log(risultato[0]);
 		risultato[1] = resto;
 		return risultato;
 	}
