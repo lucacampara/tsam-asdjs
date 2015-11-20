@@ -54,18 +54,18 @@ Array.prototype.concatOddEven = function() {
 
 
 
-function ex_1_P(arr){
+function ex_1(arr){
     return arr.sumWhileNeg();
 }
 
-function ex_3_P(arr){
+function ex_3(arr){
     return arr.avg();
 }
 
-function ex_9_P(arr){
+function ex_9(arr){
     return arr.reverse();
 }
 
-function ex_11_P(arr){
+function ex_11(arr){
     return arr.concatOddEven();
 }
